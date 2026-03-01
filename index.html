@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allison in Italia — Project UTAH 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Italian flag */
+  --it-green: #009246;
+  --it-red:   #CE2B37;
+  --it-white: #FFFFFF;
+  /* US flag */
+  --us-blue:  #002868;
+  --us-red:   #BF0A30;
+  /* Palette */
+  --bg:       #F4F8F4;
+  --surface:  #FFFFFF;
+  --dark:     #0D1B12;
+  --ink:      #1A2E1F;
+  --mid:      #4A6A52;
+  --muted:    #8AAA92;
+  --divider:  #C8E0CE;
+  --gold:     #D4A017;
+  --gold-lt:  #F5D060;
+  --shadow:   rgba(0,50,20,0.10);
+  --shadow-md:rgba(0,50,20,0.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:0;text-align:center;}
+.hero-stripe-top{height:10px;background:linear-gradient(90deg,var(--it-green) 33.3%,var(--it-white) 33.3% 66.6%,var(--it-red) 66.6%);}
+.hero-body{padding:48px 24px 44px;background:linear-gradient(160deg,var(--us-blue) 0%,#003580 45%,#001844 100%);position:relative;overflow:hidden;}
+.hero-body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 110%,rgba(206,43,55,0.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 0%,rgba(0,146,70,0.25) 0%,transparent 50%);pointer-events:none;}
+.hero-body::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.hero-stripe-bottom{height:10px;background:linear-gradient(90deg,var(--us-red) 33.3%,var(--it-white) 33.3% 66.6%,var(--it-green) 66.6%);}
+.hero-inner{position:relative;z-index:2;}
+.flag-pair{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:22px;animation:fadeDown .6s ease both;}
+.css-flag{display:flex;width:72px;height:46px;border-radius:5px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.45),0 0 0 1.5px rgba(255,255,255,0.25);}
+.it-flag{flex-direction:row;}
+.us-flag{position:relative;}
+.us-bg{width:100%;height:100%;position:relative;overflow:hidden;}
+.us-stripes{position:absolute;inset:0;display:flex;flex-direction:column;}
+.us-s{flex:1;}
+.us-s.r{background:#BF0A30;}
+.us-s.w{background:#FFFFFF;}
+.us-canton{position:absolute;top:0;left:0;width:45%;height:54%;background:#002868;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(4,1fr);align-items:center;justify-items:center;padding:2px;gap:0;}
+.st{color:#fff;font-size:0.38rem;line-height:1;display:block;}
+.flag-x{font-size:0.9rem;color:rgba(255,255,255,0.45);font-weight:300;}
+.hero-label{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFE566;text-shadow:0 1px 4px rgba(0,0,0,0.5);margin-bottom:12px;animation:fadeDown .7s ease .1s both;}
+.hero-school-links{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 20px;animation:fadeDown .8s ease .28s both;}
+.hsl-btn{background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.35);color:#fff;font-weight:700;font-size:0.8rem;padding:7px 16px;border-radius:30px;text-decoration:none;transition:all .2s;backdrop-filter:blur(6px);}
+.hsl-btn:hover{background:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.7);}
+.hsl-sep{color:rgba(255,255,255,0.35);font-size:1rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-0.5px;margin-bottom:8px;animation:fadeDown .8s ease .15s both;}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.6);font-weight:300;margin-bottom:28px;animation:fadeDown .8s ease .25s both;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;animation:fadeDown .8s ease .35s both;}
+.pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);backdrop-filter:blur(6px);color:rgba(255,255,255,0.88);padding:6px 16px;border-radius:30px;font-size:0.78rem;font-weight:600;}
+
+/* ── TABS ── */
+.tabs-wrap{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2.5px solid var(--it-green);box-shadow:0 2px 16px var(--shadow);}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px;max-width:760px;margin:0 auto;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{display:flex;align-items:center;gap:6px;padding:14px 14px 12px;background:none;border:none;border-bottom:3px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;}
+.tab:hover{color:var(--it-green);}
+.tab.active{color:var(--it-green);border-bottom-color:var(--it-green);}
+
+/* ── PAGE ── */
+.page{max-width:720px;margin:0 auto;padding:28px 16px 80px;}
+.section{display:none;}
+.section.active{display:block;animation:fadeUp .32s ease both;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.sec-sub{font-size:0.85rem;color:var(--mid);margin-bottom:22px;}
+
+/* ── MAP ── */
+.map-frame{border-radius:16px;overflow:hidden;border:2px solid var(--divider);box-shadow:0 4px 20px var(--shadow-md);margin-bottom:16px;position:relative;}
+.map-frame iframe{display:block;width:100%;height:290px;border:none;}
+.map-label{position:absolute;top:10px;left:10px;background:#fff;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-weight:700;color:var(--dark);border:1.5px solid var(--divider);box-shadow:0 2px 6px var(--shadow);}
+
+/* ── INFOBOXES ── */
+.infobox{border-left:4px solid var(--it-green);border-radius:0 12px 12px 0;padding:12px 16px;font-size:0.83rem;margin-bottom:16px;line-height:1.55;background:linear-gradient(135deg,#F0FFF5,#E5FFF0);}
+.infobox strong{color:var(--dark);}
+.infobox a{color:var(--it-green);font-weight:700;}
+.infobox.red{background:linear-gradient(135deg,#FFF0F2,#FFE5E8);border-color:var(--it-red);color:#5A1520;}
+.infobox.red strong{color:#3A0A12;}
+.infobox.red a{color:var(--it-red);}
+.infobox.blue{background:linear-gradient(135deg,#F0F4FF,#E5EAFF);border-color:var(--us-blue);color:#1A2060;}
+.infobox.blue a{color:var(--us-blue);}
+.infobox.gold{background:linear-gradient(135deg,#FFFBF0,#FFF6DC);border-color:var(--gold);color:#5A4010;}
+.infobox.gold a{color:#A07800;}
+
+/* ── LOCATION CARDS ── */
+.loc-card{background:#fff;border-radius:16px;margin-bottom:14px;overflow:hidden;border:2px solid var(--divider);box-shadow:0 2px 12px var(--shadow);transition:box-shadow .2s,transform .2s;}
+.loc-card:hover{box-shadow:0 6px 24px var(--shadow-md);transform:translateY(-2px);}
+.loc-top{display:flex;align-items:center;gap:14px;padding:16px 18px 12px;}
+.loc-ico{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.ico-s{background:linear-gradient(135deg,#FFE5E8,#FFD0D5);}
+.ico-m{background:linear-gradient(135deg,#E0F5E8,#C8EDD5);}
+.ico-h{background:linear-gradient(135deg,#E0EAFF,#C8D8FF);}
+.loc-name{font-weight:700;font-size:0.97rem;color:var(--dark);margin-bottom:2px;}
+.loc-addr{font-size:0.79rem;color:var(--mid);}
+.loc-strip{display:flex;padding:0 14px 14px;gap:7px;flex-wrap:wrap;}
+
+/* ── MAP BUTTONS ── */
+.mbtn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:22px;font-size:0.74rem;font-weight:700;text-decoration:none;transition:all .18s;border:2px solid;}
+.mbtn:hover{transform:translateY(-1px);filter:brightness(0.92);}
+.mbtn-g{color:#1558CC;border-color:#ADC4F5;background:#EEF3FF;}
+.mbtn-m{color:#0A7A3A;border-color:#7ACCA0;background:#EDFFF5;}
+.mbtn-w{color:#0055AA;border-color:#9AB8E0;background:#EEF4FF;}
+.mbtn-a{color:#333;border-color:#BBB;background:#F5F5F5;}
+.mbtn-it{color:var(--it-green);border-color:#7ACCA0;background:#EDFFF5;}
+.mbtn-us{color:var(--us-blue);border-color:#8AA8E8;background:#EEF2FF;}
+
+/* ── NOTE CARD ── */
+.note-card{background:linear-gradient(135deg,#F0FFF5,#EAFFEE);border:2px solid #A8DDB8;border-radius:16px;padding:20px 22px;margin-bottom:20px;}
+.note-head{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--it-green);margin-bottom:8px;}
+.note-card p{font-size:0.85rem;color:#2A4A30;line-height:1.65;margin-bottom:5px;}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);margin:20px 0 10px;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';flex:1;height:1.5px;background:var(--divider);}
+
+/* ── APP GRID ── */
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.app-card{background:#fff;border:2px solid var(--divider);border-radius:14px;padding:15px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:5px;transition:all .2s;box-shadow:0 1px 6px var(--shadow);}
+.app-card:hover{border-color:var(--it-green);box-shadow:0 6px 20px rgba(0,146,70,0.18);transform:translateY(-2px);}
+.app-emoji{font-size:1.7rem;}
+.app-name{font-weight:700;font-size:0.88rem;color:var(--dark);}
+.app-desc{font-size:0.73rem;color:var(--mid);line-height:1.35;}
+
+/* ── ROUTE CARDS ── */
+.route-card{background:#fff;border-radius:16px;margin-bottom:14px;overflow:hidden;border:2px solid var(--divider);box-shadow:0 2px 12px var(--shadow);}
+.rhead{padding:12px 18px;font-weight:700;font-size:0.88rem;color:#fff;display:flex;align-items:center;background:linear-gradient(135deg,var(--it-red),#A01820);}
+.rhead.green{background:linear-gradient(135deg,var(--it-green),#006830);}
+.rhead.blue{background:linear-gradient(135deg,var(--us-blue),#003CB0);}
+.rhead.gold{background:linear-gradient(135deg,#B08000,#D4A017);}
+.rhead-sub{margin-left:auto;font-weight:400;font-size:0.73rem;opacity:.85;}
+.rbody{padding:14px 18px;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--divider);gap:10px;}
+.srow:last-child{border-bottom:none;}
+.stime{font-weight:700;font-size:0.9rem;color:var(--dark);}
+.snote{font-size:0.74rem;color:var(--mid);margin-top:1px;}
+.badge{padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;flex-shrink:0;}
+.b-bus{background:#FFE8EA;color:var(--it-red);}
+.b-train{background:#E8F0FF;color:var(--us-blue);}
+.b-reg{background:#E5FFF0;color:var(--it-green);}
+.b-fast{background:#FFF5DC;color:#906000;}
+.grp-lbl{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:10px 0 4px;color:var(--it-red);}
+.grp-lbl.blue{color:var(--us-blue);}
+
+/* ── EMERGENCY ── */
+.emerg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.emerg-card{border-radius:14px;padding:18px 10px;text-align:center;text-decoration:none;display:block;border:2px solid;transition:transform .18s,box-shadow .18s;}
+.emerg-card:hover{transform:scale(1.03);box-shadow:0 6px 20px var(--shadow-md);}
+.enum{font-size:1.9rem;font-weight:800;margin-bottom:4px;font-family:'Playfair Display',serif;}
+.elbl{font-size:0.77rem;font-weight:700;}
+.edesc{font-size:0.67rem;opacity:.7;margin-top:3px;line-height:1.3;}
+.ec-r{background:#FFF0F2;color:#9A0A18;border-color:#F5B0B8;}
+.ec-b{background:#EEF2FF;color:#002060;border-color:#9AB0E0;}
+.ec-o{background:#FFF8EE;color:#804000;border-color:#F8D090;}
+.ec-g{background:#EEFFF5;color:#005520;border-color:#90D8A8;}
+.ec-p{background:#F5EEF8;color:#4A1860;border-color:#C8A8D8;}
+
+/* ── INFO CARD ── */
+.info-card{background:#fff;border-radius:16px;padding:18px 20px;margin-bottom:14px;border:2px solid var(--divider);box-shadow:0 2px 10px var(--shadow);}
+.info-card-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:10px;}
+.info-card p{font-size:0.84rem;color:var(--mid);line-height:1.65;margin-bottom:5px;}
+.info-card a{color:var(--it-green);font-weight:700;text-decoration:none;}
+
+/* ── PLACES ── */
+.zone-label{display:flex;align-items:center;gap:10px;font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin:22px 0 12px;}
+.zone-label::before,.zone-label::after{content:'';flex:1;height:1.5px;background:var(--divider);}
+.place-card{background:#fff;border-radius:14px;margin-bottom:12px;overflow:hidden;border:2px solid var(--divider);display:flex;box-shadow:0 2px 10px var(--shadow);transition:all .2s;}
+.place-card:hover{box-shadow:0 6px 22px var(--shadow-md);transform:translateY(-2px);}
+.place-card.feat{border-color:#A8DDB8;border-width:2.5px;}
+.pa{width:6px;flex-shrink:0;}
+.pb{padding:14px 16px;flex:1;}
+.pname{font-weight:700;font-size:0.97rem;color:var(--dark);margin-bottom:2px;}
+.ptype{font-size:0.69rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.pdesc{font-size:0.82rem;color:var(--mid);line-height:1.5;margin-bottom:8px;}
+.phow{font-size:0.77rem;font-weight:600;color:var(--it-green);display:flex;flex-wrap:wrap;gap:10px;}
+
+/* ── EASTER CARDS ── */
+.easter-card{background:#fff;border-radius:16px;margin-bottom:14px;overflow:hidden;border:2.5px solid;box-shadow:0 3px 16px var(--shadow);}
+.ec-header{padding:14px 18px 12px;display:flex;align-items:flex-start;gap:14px;border-bottom:1.5px solid var(--divider);}
+.ec-flag{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
+.ec-head-text .ect-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.ec-head-text .ect-meta{font-size:0.76rem;color:var(--mid);}
+.ec-body{padding:14px 18px;}
+.ec-desc{font-size:0.83rem;color:var(--mid);line-height:1.5;margin-bottom:12px;}
+.ec-journey{background:var(--bg);border-radius:10px;padding:10px 14px;font-size:0.8rem;line-height:1.7;margin-bottom:12px;}
+.ec-journey strong{color:var(--dark);}
+.ec-journey .arr{color:var(--it-green);font-weight:700;}
+.ec-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.ec-tag{padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;}
+.ec-links{display:flex;flex-wrap:wrap;gap:7px;}
+
+/* ── DIVIDER ── */
+.hr{height:1.5px;background:var(--divider);margin:20px 0;}
+
+/* ── FOOTER ── */
+.footer{background:var(--dark);padding:0;}
+.footer-stripe{height:6px;background:linear-gradient(90deg,var(--it-green) 33.3%,var(--it-white) 33.3% 66.6%,var(--it-red) 66.6%);}
+.footer-body{padding:20px;text-align:center;}
+.f1{font-family:'Playfair Display',serif;font-size:0.88rem;color:rgba(255,255,255,0.8);margin-bottom:5px;}
+.f1 strong{color:var(--gold-lt);}
+.f2{font-size:0.67rem;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;}
+.footer-stripe-us{height:6px;background:linear-gradient(90deg,var(--us-red) 33.3%,var(--it-white) 33.3% 66.6%,var(--us-blue) 66.6%);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:400px){.app-grid{grid-template-columns:1fr;}.hero h1{font-size:2.2rem;}.emerg-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stripe-top"></div>
+  <div class="hero-body">
+    <div class="hero-inner">
+      <div class="flag-pair">
+        <div class="css-flag it-flag" title="Italia">
+          <div style="flex:1;background:#009246"></div>
+          <div style="flex:1;background:#FFFFFF"></div>
+          <div style="flex:1;background:#CE2B37"></div>
+        </div>
+        <span class="flag-x">✕</span>
+        <div class="css-flag us-flag" title="United States">
+          <div class="us-bg">
+            <div class="us-stripes">
+              <div class="us-s r"></div><div class="us-s w"></div><div class="us-s r"></div>
+              <div class="us-s w"></div><div class="us-s r"></div><div class="us-s w"></div>
+              <div class="us-s r"></div><div class="us-s w"></div><div class="us-s r"></div>
+              <div class="us-s w"></div><div class="us-s r"></div><div class="us-s w"></div>
+              <div class="us-s r"></div>
+            </div>
+            <div class="us-canton">
+              <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+              <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+              <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+              <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-label">Project UTAH · 2026 · IIS Mendel</div>
+      <h1>Benvenuta <em>Allison!</em></h1>
+      <p class="hero-sub">Your personal guide to getting around — from Villa Cortese to Milan &amp; beyond</p>
+      <div class="hero-school-links">
+        <a href="https://agrariomendel.edu.it/" target="_blank" class="hsl-btn">🏫 IIS Mendel</a>
+        <span class="hsl-sep">·</span>
+        <a href="https://www.usu.edu/" target="_blank" class="hsl-btn">🎓 Utah State University</a>
+      </div>
+      <div class="hero-pills">
+        <span class="pill">🌍 Idaho → Lombardia</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stripe-bottom"></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="goTab('map',this)">📍 My Places</button>
+    <button class="tab" onclick="goTab('transport',this)">🚌 Transport</button>
+    <button class="tab" onclick="goTab('schedules',this)">🕐 Schedules</button>
+    <button class="tab" onclick="goTab('emergency',this)">🆘 Emergency</button>
+    <button class="tab" onclick="goTab('places',this)">🏛 Explore</button>
+    <button class="tab" onclick="goTab('easter',this)">🐣 Easter Trips</button>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ══ MY PLACES ══ -->
+<div id="tab-map" class="section active">
+  <div class="sec-title">Your Three Key Places</div>
+  <p class="sec-sub">School, Max's home, and your host family — always know where you are</p>
+
+  <div class="map-frame">
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.68%2C45.51%2C8.98%2C45.66&layer=mapnik" loading="lazy" allowfullscreen></iframe>
+    <div class="map-label">🗺 Alto Milanese + Malpensa</div>
+  </div>
+
+  <div class="infobox">
+    📌 <strong>View all 4 locations together:</strong><br>
+    <a href="https://www.google.com/maps/dir/Aeroporto+di+Malpensa/Via+Ferrazzi+15+Villa+Cortese/Via+San+Giovanni+Bosco+5+Canegrate/Via+dell'Asilo+25+Casorezzo" target="_blank">→ Open complete map in Google Maps (Malpensa + all 3 places)</a>
+  </div>
+
+  <!-- MALPENSA -->
+  <div class="loc-card" style="border-color:#F5D060">
+    <div class="loc-top">
+      <div class="loc-ico" style="background:linear-gradient(135deg,#FFFBE0,#FFF5A0)">✈️</div>
+      <div><div class="loc-name">Malpensa Airport — Your Arrival</div><div class="loc-addr">Via dell'Aeroporto, 21013 Cassinetta di Gallarate (VA) · Terminal 1 &amp; 2</div></div>
+    </div>
+    <div class="loc-strip">
+      <a class="mbtn mbtn-g" href="https://www.google.com/maps/dir//Aeroporto+Internazionale+di+Malpensa+T1" target="_blank">🗺 Google Maps</a>
+      <a class="mbtn mbtn-m" href="https://moovit.com/?to=Malpensa+Airport&tll=45.630_8.728" target="_blank">🟢 Moovit</a>
+      <a class="mbtn mbtn-w" href="https://waze.com/ul?q=Malpensa+Airport+Terminal+1" target="_blank">🟦 Waze</a>
+      <a class="mbtn mbtn-a" href="https://maps.apple.com/?daddr=Malpensa+Airport+Terminal+1" target="_blank">🍎 Apple Maps</a>
+    </div>
+    <div style="padding:0 14px 14px">
+      <div class="infobox gold" style="margin-bottom:8px">
+        ✈️ <strong>From Malpensa → Casorezzo / Villa Cortese:</strong><br>
+        🚌 <strong>Option 1 — Malpensa Express train:</strong> T1 → <strong>Milano Centrale</strong> (~40 min, every 30 min) then S5 to Parabiago/Canegrate. Total ~1h 30min<br>
+        🚌 <strong>Option 2 — Bus to Busto Arsizio FS</strong> (AutoStradale / FlixBus): then Trenord train ~20 min to Canegrate or Villa Cortese<br>
+        🚗 <strong>Option 3 — Max picks you up!</strong> ~25 min by car from Canegrate — the easiest option on arrival day 😊
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap">
+        <a href="https://www.malpensaexpress.it/en/" target="_blank" class="mbtn mbtn-us" style="display:inline-flex;font-size:0.74rem">🚆 Malpensa Express →</a>
+        <a href="https://www.sea-aeroportimilano.it/en/malpensa" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.74rem">✈️ SEA Malpensa →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="loc-card" style="border-color:#F5B0B8">
+    <div class="loc-top">
+      <div class="loc-ico ico-s">🏫</div>
+      <div><div class="loc-name">IIS Mendel — Your School</div><div class="loc-addr">Via Ferrazzi 15, 20035 Villa Cortese (MI)</div></div>
+    </div>
+    <div class="loc-strip">
+      <a class="mbtn mbtn-g" href="https://www.google.com/maps/dir//Via+Ferrazzi+15,+20035+Villa+Cortese+MI" target="_blank">🗺 Google Maps</a>
+      <a class="mbtn mbtn-m" href="https://moovit.com/?to=IIS+Mendel+Villa+Cortese&tll=45.564_8.960" target="_blank">🟢 Moovit</a>
+      <a class="mbtn mbtn-w" href="https://waze.com/ul?q=Via+Ferrazzi+15+Villa+Cortese" target="_blank">🟦 Waze</a>
+      <a class="mbtn mbtn-a" href="https://maps.apple.com/?daddr=Via+Ferrazzi+15,+Villa+Cortese" target="_blank">🍎 Apple Maps</a>
+    </div>
+  </div>
+
+  <div class="loc-card" style="border-color:#90D8A8">
+    <div class="loc-top">
+      <div class="loc-ico ico-m">👨‍🏫</div>
+      <div><div class="loc-name">Max's Home — Your Coordinator</div><div class="loc-addr">Via San Giovanni Bosco 5, 20039 Canegrate (MI)</div></div>
+    </div>
+    <div class="loc-strip">
+      <a class="mbtn mbtn-g" href="https://www.google.com/maps/dir//Via+San+Giovanni+Bosco+5,+20039+Canegrate+MI" target="_blank">🗺 Google Maps</a>
+      <a class="mbtn mbtn-m" href="https://moovit.com/?to=Canegrate+Via+San+Giovanni+Bosco+5&tll=45.571_8.924" target="_blank">🟢 Moovit</a>
+      <a class="mbtn mbtn-w" href="https://waze.com/ul?q=Via+San+Giovanni+Bosco+5+Canegrate" target="_blank">🟦 Waze</a>
+      <a class="mbtn mbtn-a" href="https://maps.apple.com/?daddr=Via+San+Giovanni+Bosco+5,+Canegrate" target="_blank">🍎 Apple Maps</a>
+    </div>
+  </div>
+
+  <div class="loc-card" style="border-color:#9AB0E0">
+    <div class="loc-top">
+      <div class="loc-ico ico-h">🏠</div>
+      <div><div class="loc-name">Antonella — Your Host Family</div><div class="loc-addr">Via dell'Asilo 25, 20003 Casorezzo (MI)</div></div>
+    </div>
+    <div class="loc-strip">
+      <a class="mbtn mbtn-g" href="https://www.google.com/maps/dir//Via+dell'Asilo+25,+20003+Casorezzo+MI" target="_blank">🗺 Google Maps</a>
+      <a class="mbtn mbtn-m" href="https://moovit.com/?to=Casorezzo+Via+dell'Asilo+25&tll=45.531_8.889" target="_blank">🟢 Moovit</a>
+      <a class="mbtn mbtn-w" href="https://waze.com/ul?q=Via+dell'Asilo+25+Casorezzo" target="_blank">🟦 Waze</a>
+      <a class="mbtn mbtn-a" href="https://maps.apple.com/?daddr=Via+dell'Asilo+25,+Casorezzo" target="_blank">🍎 Apple Maps</a>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="note-head">💬 A note from Max</div>
+    <p>Allison, welcome to the Alto Milanese! Your host family Antonella is in Casorezzo, and school is just a short bus ride away in Villa Cortese. My home in Canegrate is very close — don't hesitate to reach out if you ever need anything!</p>
+    <p>The area is well connected by bus (Movibus) and by train (Trenord <strong>S5</strong> line) to Milan. You'll find everything you need in this app. <strong>Buon soggiorno!</strong> 🇮🇹</p>
+  </div>
+</div>
+
+<!-- ══ TRANSPORT ══ -->
+<div id="tab-transport" class="section">
+  <div class="sec-title">Transport Apps</div>
+  <p class="sec-sub">Download these to navigate Lombardy like a local</p>
+  <div class="infobox">📱 <strong>Start here:</strong> Download <strong>Moovit</strong> or <strong>Google Maps</strong> first — real-time info, works in English!</div>
+
+  <div class="sec-label">🚂 Trains</div>
+  <div class="app-grid">
+    <a class="app-card" href="https://www.trenord.it/en/" target="_blank"><div class="app-emoji">🚃</div><div class="app-name">Trenord</div><div class="app-desc">Regional trains in Lombardy — S5 line Parabiago → Milan</div></a>
+    <a class="app-card" href="https://www.trenitalia.com/en.html" target="_blank"><div class="app-emoji">🚄</div><div class="app-name">Trenitalia</div><div class="app-desc">National trains, Frecciarossa to Rome, Florence, Venice</div></a>
+    <a class="app-card" href="https://www.italotreno.it/en" target="_blank"><div class="app-emoji">🔴</div><div class="app-name">Italo</div><div class="app-desc">Private high-speed — great for Easter day trips around Italy</div></a>
+  </div>
+
+  <div class="sec-label">🚌 Local Buses</div>
+  <div class="app-grid">
+    <a class="app-card" href="https://www.movibus.it" target="_blank"><div class="app-emoji">🚍</div><div class="app-name">Movibus</div><div class="app-desc">Your local bus — Casorezzo, Villa Cortese, Legnano, Busto Arsizio</div></a>
+    <a class="app-card" href="https://www.atm.it/en/" target="_blank"><div class="app-emoji">🟡</div><div class="app-name">ATM Milano</div><div class="app-desc">Milan metro, tram, bus — once you arrive in the city</div></a>
+  </div>
+
+  <div class="sec-label">🗺 Navigation</div>
+  <div class="app-grid">
+    <a class="app-card" href="https://moovit.com" target="_blank"><div class="app-emoji">🟢</div><div class="app-name">Moovit</div><div class="app-desc">Best all-in-one planner — real-time, works in English</div></a>
+    <a class="app-card" href="https://maps.google.com" target="_blank"><div class="app-emoji">🗺</div><div class="app-name">Google Maps</div><div class="app-desc">Reliable — shows bus + train options together</div></a>
+    <a class="app-card" href="https://www.waze.com" target="_blank"><div class="app-emoji">🟦</div><div class="app-name">Waze</div><div class="app-desc">Best for car rides — real-time traffic alerts</div></a>
+    <a class="app-card" href="https://maps.apple.com" target="_blank"><div class="app-emoji">🍎</div><div class="app-name">Apple Maps</div><div class="app-desc">Works well in Italy with transit directions</div></a>
+  </div>
+
+  <div class="sec-label">🛵 Taxis</div>
+  <div class="app-grid">
+    <a class="app-card" href="https://www.uber.com" target="_blank"><div class="app-emoji">⬛</div><div class="app-name">Uber</div><div class="app-desc">Available in Milan — use your US account in English</div></a>
+    <a class="app-card" href="https://www.ittaxi.it" target="_blank"><div class="app-emoji">🚕</div><div class="app-name">itTaxi</div><div class="app-desc">Official Italian taxi app — often cheaper than Uber</div></a>
+  </div>
+
+  <div class="infobox" style="margin-top:8px">🎫 <strong>Tickets:</strong> Buy Trenord tickets on the <strong>Trenord app</strong> or at station machines. For Movibus: buy <strong>on board</strong> or at tabaccherie. <strong>Always validate when boarding!</strong> Fines are €70+.</div>
+</div>
+
+<!-- ══ SCHEDULES ══ -->
+<div id="tab-schedules" class="section">
+  <div class="sec-title">Schedules</div>
+  <p class="sec-sub">Key routes — always verify on Movibus or Trenord apps before travelling</p>
+  <div class="infobox">⚠️ <strong>Reference schedules only.</strong> Always check live at <a href="https://www.movibus.it" target="_blank">Movibus.it</a> or <a href="https://www.trenord.it" target="_blank">Trenord.it</a> — times change seasonally.</div>
+
+  <div class="route-card">
+    <div class="rhead">🏠 Casorezzo → 🏫 Villa Cortese (School)<span class="rhead-sub">~15 min · Z643</span></div>
+    <div class="rbody">
+      <div class="infobox" style="margin-bottom:12px">Take <strong>Movibus Z643</strong> (Vittuone – Arluno – Ossona – <u>Casorezzo</u> – <u>Villa Cortese</u>) directly to school. Ask Antonella for the exact nearest stop!</div>
+      <div class="srow"><div><div class="stime">~07:05</div><div class="snote">Morning school run</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div class="srow"><div><div class="stime">~07:35</div><div class="snote">Morning school run</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div class="srow"><div><div class="stime">~08:05</div><div class="snote">Morning school run</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div style="padding-top:10px"><a href="https://www.movibus.it/orari" target="_blank" class="mbtn mbtn-it" style="display:inline-flex">📅 Full schedule on Movibus →</a></div>
+    </div>
+  </div>
+
+  <div class="route-card">
+    <div class="rhead">🏫 Villa Cortese → 🏠 Casorezzo (Return)<span class="rhead-sub">~15 min · Z643</span></div>
+    <div class="rbody">
+      <div class="infobox" style="margin-bottom:12px">Same <strong>Z643</strong> in reverse. Or <strong>Z644</strong> (Villa Cortese → Parabiago) to connect to S5 train.</div>
+      <div class="srow"><div><div class="stime">~13:10</div><div class="snote">After morning classes</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div class="srow"><div><div class="stime">~14:10</div><div class="snote">Afternoon run</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div class="srow"><div><div class="stime">~16:10</div><div class="snote">End of school day</div></div><span class="badge b-bus">🚍 Z643</span></div>
+      <div style="padding-top:10px"><a href="https://www.movibus.it/orari" target="_blank" class="mbtn mbtn-it" style="display:inline-flex">📅 Full schedule on Movibus →</a></div>
+    </div>
+  </div>
+
+  <div class="route-card">
+    <div class="rhead">🏠 Casorezzo → 🏙 Legnano<span class="rhead-sub">~25–35 min · Z643+Z627</span></div>
+    <div class="rbody">
+      <div class="infobox" style="margin-bottom:12px">🔹 <strong>Z643</strong> to Villa Cortese, then <strong>Z627</strong> (→ Legnano)<br>🔹 <strong>Z647</strong> via Busto Garolfo — check Moovit for best option</div>
+      <div class="srow"><div><div class="stime">Every 30–60 min</div><div class="snote">Weekdays — check Movibus for exact times</div></div><span class="badge b-bus">🚍 Bus</span></div>
+      <div style="padding-top:10px"><a href="https://www.movibus.it/orari" target="_blank" class="mbtn mbtn-it" style="display:inline-flex">📅 Check Movibus →</a></div>
+    </div>
+  </div>
+
+  <div class="route-card">
+    <div class="rhead blue">🚉 To Milan — by Train S5<span class="rhead-sub">~35–45 min from Parabiago</span></div>
+    <div class="rbody">
+      <div class="infobox blue">🔹 <strong>Z644</strong> (Villa Cortese → Parabiago) or <strong>Z643</strong> from Casorezzo + Z644. Board <strong>Trenord S5</strong> at Parabiago → <strong>Milano Porta Garibaldi</strong></div>
+      <div class="srow"><div><div class="stime">Every ~20–30 min</div><div class="snote">Parabiago → Milano Porta Garibaldi, all day</div></div><span class="badge b-train">🚃 S5</span></div>
+      <div class="srow"><div><div class="stime">~06:00 – 23:30</div><div class="snote">Service hours (last train varies)</div></div><span class="badge b-train">🚃 S5</span></div>
+      <div class="srow"><div><div class="stime">~€3.40 one way</div><div class="snote">Zone 2 ticket — Trenord app or station machine</div></div><span class="badge b-reg">🎫 Fare</span></div>
+      <div style="padding-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://www.trenord.it/en/journey-planner/" target="_blank" class="mbtn mbtn-a" style="display:inline-flex">🚃 Trenord Planner →</a>
+        <a href="https://moovit.com" target="_blank" class="mbtn mbtn-m" style="display:inline-flex">🟢 Moovit →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-card">
+    <div class="rhead">🚌 To Milan — by Bus (from Legnano)<span class="rhead-sub">~60–80 min</span></div>
+    <div class="rbody">
+      <div class="infobox" style="margin-bottom:12px"><strong>Z602</strong> (Legnano → Milano Cadorna via A8) or <strong>Z601</strong> (→ Molino Dorino M1). 🚃 The S5 train from Parabiago is faster — use bus if you're already in Legnano.</div>
+      <div style="padding-top:4px"><a href="https://www.movibus.it/linee" target="_blank" class="mbtn mbtn-it" style="display:inline-flex">📅 Movibus Lines →</a></div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="sec-label" style="color:var(--us-blue)">⭐ Day Trip — Stresa, Lake Maggiore</div>
+
+  <div class="route-card">
+    <div class="rhead blue">🚃 Milano Centrale → Stresa<span class="rhead-sub">~1h – 1h 10min</span></div>
+    <div class="rbody">
+      <div class="infobox blue">🗺 S5 from Parabiago → <strong>Porta Garibaldi</strong>, then Metro M2 (green) 2 stops to <strong>Centrale FS</strong>. Or buy a through ticket on Trenord app!</div>
+      <div class="grp-lbl">☀️ Morning (after 07:00)</div>
+      <div class="srow"><div><div class="stime">07:10</div><div class="snote">Regionale · arr. Stresa ~08:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">08:10</div><div class="snote">Regionale · arr. Stresa ~09:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">09:10</div><div class="snote">Regionale · arr. Stresa ~10:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">10:10</div><div class="snote">Regionale · arr. Stresa ~11:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="grp-lbl blue">🌆 Afternoon (after 17:00)</div>
+      <div class="srow"><div><div class="stime">17:10</div><div class="snote">Regionale · arr. Stresa ~18:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">18:10</div><div class="snote">Regionale · arr. Stresa ~19:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">19:10</div><div class="snote">Regionale · arr. Stresa ~20:20</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="srow"><div><div class="stime">20:10</div><div class="snote">Regionale · arr. ~21:15 · check carefully</div></div><span class="badge b-train">🚃 Direct</span></div>
+      <div class="infobox" style="margin-top:12px">💡 <strong>Best day trip plan:</strong> depart Milan at <strong>09:10</strong>, return from Stresa at <strong>19:15 or 20:15</strong>. 🎫 ~€8–9 each way · <a href="https://www.trenord.it/en/">Trenord app</a></div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">💡 Practical Tips</div>
+    <p>🎫 <strong>Always validate your ticket!</strong> Stamp/scan it when boarding — fines are €70+</p>
+    <p>📱 <strong>Trenord app</strong> stores mobile tickets — no printing needed</p>
+    <p>⏰ Buses run <strong>infrequently on Saturdays</strong> and often <strong>not on Sundays</strong> in small towns</p>
+    <p>🚗 Don't hesitate to ask Max or Antonella for a lift if you're stuck!</p>
+  </div>
+</div>
+
+<!-- ══ EMERGENCY ══ -->
+<div id="tab-emergency" class="section">
+  <div class="sec-title">Emergency Numbers 🆘</div>
+  <p class="sec-sub">Save these in your phone — <strong>112</strong> is the single number that does it all</p>
+  <div class="infobox">🌍 <strong>112 is the European single emergency number.</strong> Speak English — they connect you to police, ambulance, or fire brigade. <strong>Free from any phone, even with no SIM credit.</strong></div>
+
+  <div class="emerg-grid">
+    <a class="emerg-card ec-r" href="tel:112"><div class="enum">112</div><div class="elbl">Single Emergency</div><div class="edesc">Police · Fire · Ambulance<br><em>speaks English</em></div></a>
+    <a class="emerg-card ec-b" href="tel:113"><div class="enum">113</div><div class="elbl">Police — Polizia</div><div class="edesc">Public safety</div></a>
+    <a class="emerg-card ec-o" href="tel:118"><div class="enum">118</div><div class="elbl">Ambulance</div><div class="edesc">Medical emergencies</div></a>
+    <a class="emerg-card ec-r" href="tel:115"><div class="enum">115</div><div class="elbl">Fire Brigade</div><div class="edesc">Vigili del Fuoco</div></a>
+    <a class="emerg-card ec-g" href="tel:1500"><div class="enum">1500</div><div class="elbl">Health Ministry</div><div class="edesc">Non-urgent health info</div></a>
+    <a class="emerg-card ec-p" href="tel:116117"><div class="enum">116117</div><div class="elbl">Non-Urgent Medical</div><div class="edesc">GP out of hours</div></a>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">🇺🇸 US Consulate General — Milan</div>
+    <p><strong>Address:</strong> Via Principe Amedeo, 2/10, 20121 Milano</p>
+    <p>📞 <a href="tel:+390290351">+39 02 9035 1</a> &nbsp;|&nbsp; 🌐 <a href="https://it.usembassy.gov/embassy-consulates/milan/" target="_blank">it.usembassy.gov</a></p>
+    <p>🆘 <strong>After-hours US citizen emergencies:</strong> <a href="tel:+390646741">+39 06 4674 1</a></p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">🏥 Nearest Hospitals</div>
+    <p>🏥 <strong>Ospedale Civile di Legnano</strong> (nearest)<br>Via Giovanni Paolo II, 1 · Legnano (MI) · <a href="tel:0331449111">0331 449 111</a><br>
+    <a href="https://www.google.com/maps/dir//Ospedale+Legnano" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;margin-top:8px;font-size:0.72rem">🗺 Directions</a></p>
+    <p style="margin-top:12px">🏥 <strong>Ospedale Niguarda</strong> — Milan (English-speaking staff) · <a href="tel:026444111">02 6444 111</a></p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">📞 Key Contacts</div>
+    <p>👨‍🏫 <strong>Max (coordinator):</strong> save his number before you arrive!</p>
+    <p>🏠 <strong>Antonella (host family):</strong> save her number too!</p>
+    <p>🚓 <strong>Carabinieri:</strong> <a href="tel:112">112</a> &nbsp;|&nbsp; ☎️ <strong>ACI Road Assistance:</strong> <a href="tel:803116">803 116</a></p>
+  </div>
+</div>
+
+<!-- ══ EXPLORE ══ -->
+<div id="tab-places" class="section">
+  <div class="sec-title">Places to Explore 🗺</div>
+  <p class="sec-sub">From right around the corner to a short train ride away</p>
+
+  <div class="zone-label" style="color:var(--it-red)">📍 Right Around You</div>
+  <div class="place-card"><div class="pa" style="background:var(--it-red)"></div><div class="pb"><div class="pname">Legnano — The Local City</div><div class="ptype" style="color:var(--it-red)">🏙 Town · Shopping · History</div><div class="pdesc">Famous for the 1176 Battle of Legnano. Visit the <strong>Castello di Legnano</strong>, stroll the pedestrian center, enjoy great cafés and restaurants.</div><div class="phow"><span>🚍 Z627 · ~15 min</span><span>🚃 5 min by train</span></div></div></div>
+
+  <div class="place-card"><div class="pa" style="background:var(--it-green)"></div><div class="pb"><div class="pname">Parco del Ticino</div><div class="ptype" style="color:var(--it-green)">🌿 Nature · Cycling · River</div><div class="pdesc">A vast regional nature park along the Ticino river — cycling, walking, herons and kingfishers. Rent a bike in Turbigo or Magenta for a scenic ride.</div><div class="phow"><span>🚴 Cycling</span><span>🚌 Bus to Cuggiono or Turbigo</span></div></div></div>
+
+  <div class="place-card"><div class="pa" style="background:var(--gold)"></div><div class="pb"><div class="pname">Busto Arsizio</div><div class="ptype" style="color:#906000">🏛 Town · History · Shopping</div><div class="pdesc">Elegant architecture, great shopping. See <strong>Santa Maria di Piazza</strong> and the textile museum — the area is famous for its fabric industry.</div><div class="phow"><span>🚃 15 min by train</span><span>🚍 30 min by bus</span></div></div></div>
+
+  <div class="zone-label" style="color:#8B4513">🚡 23 Marzo — Gita Scolastica a Bergamo</div>
+
+  <!-- BERGAMO MAP -->
+  <div class="infobox gold" style="margin-bottom:14px">
+    📅 <strong>School trip on March 23rd!</strong> Bergamo is one of the most beautiful cities in Lombardy — a Venetian walled upper city (Città Alta) perched on a hill above the modern lower city. UNESCO World Heritage Site since 2017.
+  </div>
+
+  <div class="map-frame" style="margin-bottom:14px">
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=9.640%2C45.690%2C9.680%2C45.710&layer=mapnik&marker=45.7037%2C9.6620" loading="lazy" allowfullscreen></iframe>
+    <div class="map-label">🗺 Bergamo — Città Alta</div>
+  </div>
+
+  <!-- MAP POINTS -->
+  <div class="infobox blue" style="margin-bottom:14px">
+    📍 <strong>3 key locations for your visit:</strong><br>
+    <a href="https://www.google.com/maps/dir//Istituto+Palocapa+Bergamo" target="_blank">🏫 Istituto Palocapa, Bergamo</a><br>
+    <a href="https://www.google.com/maps/dir//Orto+Botanico+Lorenzo+Rota+Bergamo" target="_blank">🌿 Orto Botanico Lorenzo Rota, Bergamo</a><br>
+    <a href="https://www.google.com/maps/dir//La+Viscontea+Bergamo" target="_blank">🏰 La Viscontea, Bergamo</a>
+  </div>
+
+  <!-- FUNICULAR CARD -->
+  <div class="route-card" style="margin-bottom:12px">
+    <div class="rhead" style="background:linear-gradient(135deg,#8B4513,#A0522D)">🚡 Funicolare — Città Bassa → Città Alta<span class="rhead-sub">~3 min · every 12 min</span></div>
+    <div class="rbody">
+      <div class="infobox" style="margin-bottom:12px">
+        The <strong>Funicolare Bergamo</strong> is the classic way to reach the walled upper city. It runs continuously and is part of the ATB urban transport network — you can use a regular city bus ticket!
+      </div>
+      <div class="srow"><div><div class="stime">Departure station</div><div class="snote">🚉 <strong>Funicolare Inferiore</strong> — Viale Vittorio Emanuele II, Bergamo (Città Bassa, near train station)</div></div></div>
+      <div class="srow"><div><div class="stime">Arrival station</div><div class="snote">🏰 <strong>Funicolare Superiore</strong> — Piazza Mercato delle Scarpe, Città Alta (right inside the walls!)</div></div></div>
+      <div class="srow"><div><div class="stime">~06:30 – 00:30</div><div class="snote">Service hours — departs every ~12 min throughout the day</div></div><span class="badge b-reg">🚡 ~3 min</span></div>
+      <div class="srow"><div><div class="stime">€1.50 one way</div><div class="snote">Standard ATB city ticket — or use a 24h tourist pass (€4.50)</div></div><span class="badge b-train">🎫 ATB</span></div>
+      <div style="padding-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://www.atb.bergamo.it/en/funicular" target="_blank" class="mbtn mbtn-it" style="display:inline-flex;font-size:0.75rem">🚡 ATB Funicolare info →</a>
+        <a href="https://www.google.com/maps/dir//Funicolare+di+Bergamo+Inferiore" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Find the station →</a>
+      </div>
+      <div class="infobox" style="margin-top:12px">
+        💡 <strong>There are actually TWO funiculars!</strong> The first (Funicolare del Colle) goes from Città Bassa → Città Alta (~3 min). A second, shorter one (Funicolare di San Vigilio) continues from Città Alta up to the <strong>Castello di San Vigilio</strong> at the very top, for even more spectacular views over the Po Valley!
+      </div>
+    </div>
+  </div>
+
+  <!-- BERGAMO PLACE CARD -->
+  <div class="place-card feat" style="border-color:#C8A060;margin-bottom:6px">
+    <div class="pa" style="background:#8B4513"></div>
+    <div class="pb">
+      <div class="pname">Bergamo — Città Alta 🏰</div>
+      <div class="ptype" style="color:#8B4513">🏛 UNESCO · Venetian Walls · Baroque · Medieval</div>
+      <div class="pdesc">One of the most beautiful città murate (walled cities) in Italy — 6 km of Venetian Renaissance walls, baroque churches, and medieval towers. Stroll the <strong>Piazza Vecchia</strong>, climb the <strong>Torre del Campanone</strong> for panoramic views, and explore the historic streets. The <strong>Orto Botanico</strong> and the <strong>Accademia Carrara</strong> (one of Italy's finest art galleries) are nearby.<br><br>
+      <strong>Palocapa</strong> (Istituto Tecnico Pietro Secco Suardo / Palocapa) is one of Bergamo's historic technical institutes — interesting to compare with IIS Mendel!<br>
+      <strong>La Viscontea</strong> is a historic building in the upper city, testament to Bergamo's Visconti and Venetian past.</div>
+      <div class="phow"><span>🚃 ~50 min from Milano Centrale</span><span>🚡 Funicolare from station</span></div>
+      <div style="margin-top:8px;display:flex;gap:7px;flex-wrap:wrap">
+        <a href="https://www.google.com/maps/dir//Bergamo+Città+Alta" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.73rem">🗺 Città Alta map →</a>
+        <a href="https://www.atb.bergamo.it/en" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.73rem">🚌 ATB city transport →</a>
+      </div>
+    </div>
+  </div>
+  <div class="place-card"><div class="pa" style="background:var(--us-blue)"></div><div class="pb"><div class="pname">Milan — Il Duomo &amp; City Center</div><div class="ptype" style="color:var(--us-blue)">⛪ Landmark · Fashion · Culture</div><div class="pdesc">One of Europe's greatest cathedrals, the Galleria Vittorio Emanuele II, rooftop views. Plus: <strong>Castello Sforzesco</strong>, <strong>Brera district</strong>, <strong>Navigli canals</strong>.</div><div class="phow"><span>🚃 S5 → Porta Garibaldi, then Metro</span></div></div></div>
+
+  <div class="place-card"><div class="pa" style="background:#8E44AD"></div><div class="pb"><div class="pname">Pinacoteca di Brera</div><div class="ptype" style="color:#8E44AD">🎨 Art Museum · Raphael · Caravaggio</div><div class="pdesc">Italy's finest art museums in a baroque palace. The Brera neighborhood has design studios, antique shops, and perfect aperitivo bars.</div><div class="phow"><span>🚃 Trenord → Metro M2 Lanza</span></div></div></div>
+
+  <div class="place-card"><div class="pa" style="background:#D4870A"></div><div class="pb"><div class="pname">The Last Supper — Cenacolo</div><div class="ptype" style="color:#D4870A">🖼 Leonardo da Vinci · UNESCO</div><div class="pdesc">Leonardo's <em>The Last Supper</em> — one of the most famous works in the world. <strong>Book months in advance!</strong> Unmissable.</div><div class="phow"><span>🚃 → Metro M1 Cadorna</span><span>🎫 cenacolovinciano.org</span></div></div></div>
+
+  <div class="zone-label" style="color:var(--it-green)">🌿 ~30–50 Min — Toward Varese &amp; Lakes</div>
+  <div class="place-card"><div class="pa" style="background:var(--it-green)"></div><div class="pb"><div class="pname">Varese &amp; Sacro Monte</div><div class="ptype" style="color:var(--it-green)">⛪ UNESCO · Nature · Lakeside</div><div class="pdesc">"La Città Giardino". The <strong>Sacro Monte di Varese</strong> is UNESCO — a forested path with 14 chapels and stunning pre-Alpine views.</div><div class="phow"><span>🚃 ~20 min from Busto Arsizio</span></div></div></div>
+
+  <div class="place-card feat"><div class="pa" style="background:#1A6FA8"></div><div class="pb"><div class="pname">Stresa &amp; Borromean Islands ⭐</div><div class="ptype" style="color:#1A6FA8">🚂 Solo by Train · Lakeside · Isola Bella</div><div class="pdesc">Elegant lakeside town, Art Nouveau villas. Ferry to <strong>Isola Bella</strong> (baroque palace) and <strong>Isola dei Pescatori</strong> (fishing village frozen in time).</div><div class="phow"><span>🚃 ~1h from Milano Centrale</span><span>⛴ 5 min walk to ferry</span></div><div style="margin-top:8px;display:flex;gap:7px;flex-wrap:wrap"><a href="https://www.navigazionelaghi.it/en/" target="_blank" class="mbtn mbtn-m" style="display:inline-flex;font-size:0.73rem">⛴ Ferry timetables</a><a href="https://www.trenord.it/en/journey-planner/" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.73rem">🚃 Book train</a></div></div></div>
+
+  <div class="zone-label" style="color:var(--it-red)">⭐ Extra — Day Trips with Max</div>
+  <div class="place-card feat" style="border-color:#F5B0B8"><div class="pa" style="background:var(--it-red)"></div><div class="pb"><div class="pname">Lake Como &amp; Como City ⭐</div><div class="ptype" style="color:var(--it-red)">💎 Iconic · UNESCO · Bellagio · With Max 🚗</div><div class="pdesc">One of the most beautiful lakes on Earth. Villages like <strong>Bellagio</strong>, <strong>Varenna</strong>, and <strong>Menaggio</strong> are jaw-dropping. George Clooney has a villa here!</div><div class="phow"><span>🚗 ~45 min from Casorezzo</span><span>🚃 Also by train from Milan</span></div></div></div>
+</div>
+
+<!-- ══ EASTER TRIPS ══ -->
+<div id="tab-easter" class="section">
+  <div class="sec-title">Easter Break Trips 🐣</div>
+  <p class="sec-sub">Italy is YOUR oyster during the holidays! All reachable by train from Milan.</p>
+
+  <div class="infobox gold">
+    🌷 <strong>Easter 2026 falls on April 5th.</strong> Italian schools typically have about 10 days off around Easter — plenty of time for amazing train adventures! <strong>Book tickets in advance</strong> (especially Frecciarossa) — Easter is peak season and trains fill up fast.
+  </div>
+
+  <!-- BOLOGNA -->
+  <div class="easter-card" style="border-color:#D4870A">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#FFF5DC,#FFE8A0)">🍝</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Bologna — La Grassa</div>
+        <div class="ect-meta">Emilia-Romagna · "The Fat One" · UNESCO porticoes</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">Bologna is one of Italy's most underrated cities and a food lover's paradise. Famous for <strong>ragù alla bolognese</strong> (the real one!), <strong>mortadella</strong>, and <strong>tortellini</strong>. Stunning medieval architecture with 40 km of porticoes, two iconic leaning towers, and a vibrant university-town energy. A perfect one-day or overnight trip!</div>
+      <div class="ec-journey">
+        <strong>🚆 From Milano Centrale:</strong> <span class="arr">Frecciarossa or Italo — ~1 hour direct!</span><br>
+        <strong>📍 Arrive at:</strong> Bologna Centrale (central station, everything walkable)<br>
+        <strong>🎫 Fare:</strong> from ~€15–25 if booked in advance<br>
+        <strong>🕐 Frequency:</strong> trains every 20–30 min throughout the day
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#FFF5DC;color:#806000">🍝 Best food in Italy</span>
+        <span class="ec-tag" style="background:#FFF0F2;color:#900">🏛 Medieval towers</span>
+        <span class="ec-tag" style="background:#E5FFF0;color:#006830">⚡ 1h direct</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Must-see:</strong> Due Torri (two leaning towers) · Piazza Maggiore · Basilica di San Petronio · Mercato di Mezzo (food market!) · MAMbo modern art museum<br>
+        <strong>Must-eat:</strong> tortellini in brodo · crescentine fritte · mortadella · gelato at Sorbetteria Castiglione
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Book on Trenitalia →</a>
+        <a href="https://www.italotreno.it/en" target="_blank" class="mbtn mbtn-us" style="display:inline-flex;font-size:0.75rem">🔴 Book on Italo →</a>
+        <a href="https://www.google.com/maps/dir//Bologna+Centrale" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENOVA -->
+  <div class="easter-card" style="border-color:#1A6FA8">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#E0EAFF,#C0D4FF)">⚓</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Genova — La Superba</div>
+        <div class="ect-meta">Liguria · Caruggi · Pesto · Sea</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">Genova is a city of dramatic contrasts — a UNESCO historic center with narrow medieval alleys (<em>caruggi</em>), a stunning waterfront with an aquarium, and the birthplace of Christopher Columbus and pesto! An authentic, gritty, gorgeous city that tourists often skip — don't make that mistake!</div>
+      <div class="ec-journey">
+        <strong>🚆 From Milano Centrale:</strong> <span class="arr">Intercity or EC — ~1h 30min direct</span><br>
+        <strong>📍 Arrive at:</strong> Genova Piazza Principe or Genova Brignole<br>
+        <strong>🎫 Fare:</strong> from ~€12–20 depending on train type<br>
+        <strong>🕐 Frequency:</strong> trains every ~60 min (being upgraded to every 60 min from Dec 2025)
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#E0EAFF;color:#002060">⚓ Maritime history</span>
+        <span class="ec-tag" style="background:#E5FFF0;color:#006830">🌿 Pesto birthplace</span>
+        <span class="ec-tag" style="background:#FFF5DC;color:#806000">🐟 Best seafood</span>
+        <span class="ec-tag" style="background:#FFF0F2;color:#900">🏛 UNESCO center</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Must-see:</strong> Caruggi (medieval alleys) · Acquario di Genova (one of Europe's largest!) · Porto Antico · Palazzo Ducale · Boccadasse fishing village<br>
+        <strong>Must-eat:</strong> focaccia genovese · pesto al mortaio · farinata · frisceu (fried dough) · pansotti pasta
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Book on Trenitalia →</a>
+        <a href="https://www.google.com/maps/dir//Genova+Piazza+Principe" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CINQUE TERRE -->
+  <div class="easter-card" style="border-color:#009246">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#E0FFF0,#B8F0D8)">🏘</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Cinque Terre</div>
+        <div class="ect-meta">Liguria · UNESCO · 5 Cliffside Villages · Sea</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">Five impossibly beautiful villages clinging to cliffs above the turquoise Ligurian Sea — <strong>Riomaggiore, Manarola, Corniglia, Vernazza, Monterosso</strong>. Colorful houses, vineyard trails, and the famous <strong>Via dell'Amore</strong> coastal path. One of Italy's most iconic destinations — best visited on a weekday or in the morning to beat the crowds. Plan for <strong>at least 2 days</strong> to see all five properly!</div>
+      <div class="ec-journey">
+        <strong>🚆 Step 1 — Milano Centrale → La Spezia:</strong> <span class="arr">Frecciarossa (direct or via Genova) ~2h – 2h 30min</span><br>
+        <strong>🚆 Step 2 — La Spezia → Villages:</strong> <span class="arr">Cinque Terre Express regional — every 30 min, 7–20 min per village</span><br>
+        <strong>📍 Villages from La Spezia:</strong> Riomaggiore (7 min) · Manarola (10 min) · Corniglia (14 min) · Vernazza (20 min) · Monterosso (25 min)<br>
+        <strong>🎫 Fare:</strong> Milano→La Spezia from ~€25–40 · Cinque Terre card (all villages, unlimited trains): ~€20/day<br>
+        <strong>💡 Tip:</strong> Buy the <strong>Cinque Terre Card</strong> at La Spezia station — includes all local trains between villages!
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#E0FFF0;color:#005520">🏘 5 villages</span>
+        <span class="ec-tag" style="background:#E0EAFF;color:#002060">🌊 Crystal sea</span>
+        <span class="ec-tag" style="background:#FFF0F2;color:#900">🥾 Hiking trails</span>
+        <span class="ec-tag" style="background:#FFF5DC;color:#806000">📸 UNESCO · Most photographed</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Must-do:</strong> Walk the Via dell'Amore (Riomaggiore–Manarola) · Swim at Monterosso beach · Hike Vernazza–Monterosso trail · Sunset aperitivo in any piazza<br>
+        <strong>Must-eat:</strong> anchovies · focaccia · pesto trofie · sciacchetrà (local sweet wine) · fried calamari at the port<br>
+        <strong>⚠️ Book accommodations VERY early</strong> — Easter week fills up months in advance!
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Milan → La Spezia →</a>
+        <a href="https://www.parconazionale5terre.it/en/visit/cinque-terre-card/" target="_blank" class="mbtn mbtn-it" style="display:inline-flex;font-size:0.75rem">🎫 Cinque Terre Card →</a>
+        <a href="https://www.google.com/maps/dir//Riomaggiore" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLORENCE -->
+  <div class="easter-card" style="border-color:#C8862C">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#FFF8E8,#FFE8B0)">🌸</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Florence — Firenze</div>
+        <div class="ect-meta">Tuscany · Renaissance · The Uffizi · Michelangelo</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">The cradle of the Renaissance — arguably the most art-dense city on Earth. <strong>Michelangelo's David, Botticelli's Birth of Venus, Brunelleschi's Dome</strong> — all here. Plus the most beautiful historic center in Italy (UNESCO), world-class food, and Tuscany's rolling hills visible from the hilltop Piazzale Michelangelo. A day trip is possible but two days is ideal!</div>
+      <div class="ec-journey">
+        <strong>🚆 From Milano Centrale:</strong> <span class="arr">Frecciarossa — ~1h 45min direct!</span><br>
+        <strong>📍 Arrive at:</strong> Firenze Santa Maria Novella (right in the center)<br>
+        <strong>🎫 Fare:</strong> from ~€20–35 if booked in advance<br>
+        <strong>🕐 Frequency:</strong> trains every 20–30 min throughout the day
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#FFF8E8;color:#806000">🎨 Renaissance capital</span>
+        <span class="ec-tag" style="background:#E5FFF0;color:#006830">⚡ 1h 45min direct</span>
+        <span class="ec-tag" style="background:#FFF0F2;color:#900">🏛 Uffizi · David · Duomo</span>
+        <span class="ec-tag" style="background:#E0EAFF;color:#002060">🍷 Best Chianti</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Must-see:</strong> Uffizi Gallery (book online!) · Accademia (Michelangelo's David — book online!) · Brunelleschi's Dome (climb it!) · Piazzale Michelangelo at sunset · Ponte Vecchio · Oltrarno neighborhood<br>
+        <strong>Must-eat:</strong> bistecca alla fiorentina · lampredotto (street food) · ribollita soup · gelato at Gelateria dei Neri · Chianti wine<br>
+        <strong>⚠️ Book Uffizi and Accademia tickets online weeks in advance</strong> — Easter queues are enormous!
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Book on Trenitalia →</a>
+        <a href="https://www.italotreno.it/en" target="_blank" class="mbtn mbtn-us" style="display:inline-flex;font-size:0.75rem">🔴 Book on Italo →</a>
+        <a href="https://www.uffizi.it/en" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🎨 Uffizi tickets →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERONA -->
+  <div class="easter-card" style="border-color:#CE2B37">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#FFE8EA,#FFD0D5)">🎭</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Verona — Città dell'Amore</div>
+        <div class="ect-meta">Veneto · Romeo &amp; Juliet · UNESCO · Arena</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">Verona is one of northern Italy's most beautiful cities — a perfectly preserved Roman and medieval center, UNESCO-listed, with the famous <strong>Roman Arena</strong> (still used for opera), <strong>Juliet's Balcony</strong>, and the most romantic atmosphere you can imagine. Easily combinable with a morning or afternoon at nearby Lake Garda!</div>
+      <div class="ec-journey">
+        <strong>🚆 From Milano Centrale:</strong> <span class="arr">Frecciarossa or Italo — ~1h 10min direct!</span><br>
+        <strong>📍 Arrive at:</strong> Verona Porta Nuova (15 min walk or bus to center)<br>
+        <strong>🎫 Fare:</strong> from ~€15–30 if booked in advance<br>
+        <strong>🕐 Frequency:</strong> trains every 30 min throughout the day<br>
+        <strong>💡 Tip:</strong> Combine with Lake Garda — Sirmione is only 40 min by bus from Verona station!
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#FFE8EA;color:#9A0A18">❤️ Romeo &amp; Juliet</span>
+        <span class="ec-tag" style="background:#E5FFF0;color:#006830">⚡ 1h 10min direct</span>
+        <span class="ec-tag" style="background:#FFF8E8;color:#806000">🏟 Roman Arena</span>
+        <span class="ec-tag" style="background:#E0EAFF;color:#002060">🏛 UNESCO center</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Must-see:</strong> Arena di Verona (1st century Roman amphitheater, still used for opera!) · Casa di Giulietta &amp; balcony · Piazza delle Erbe · Castel San Pietro (hilltop, stunning views) · Ponte Pietra (Roman bridge)<br>
+        <strong>Must-eat:</strong> risotto all'Amarone · pastissada de caval · pandoro (it was invented in Verona!) · Soave &amp; Valpolicella wines
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Book on Trenitalia →</a>
+        <a href="https://www.italotreno.it/en" target="_blank" class="mbtn mbtn-us" style="display:inline-flex;font-size:0.75rem">🔴 Book on Italo →</a>
+        <a href="https://www.google.com/maps/dir//Verona+Porta+Nuova" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAKE GARDA -->
+  <div class="easter-card" style="border-color:#009246">
+    <div class="ec-header">
+      <div class="ec-flag" style="background:linear-gradient(135deg,#DAFFF0,#B8F0E0)">🏰</div>
+      <div class="ec-head-text">
+        <div class="ect-title">Lago di Garda — Sirmione &amp; Beyond</div>
+        <div class="ect-meta">Italy's largest lake · Sirmione · Desenzano · Malcesine</div>
+      </div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-desc">Lake Garda is Italy's largest and most popular lake — crystal-clear water, lemon groves, olive trees, dramatic cliffs in the north, and gentle shores in the south. <strong>Sirmione</strong> is the jewel: a medieval castle town on a narrow peninsula jutting into the lake, with Roman ruins and thermal baths. Stunning at Easter when spring flowers are everywhere!</div>
+      <div class="ec-journey">
+        <strong>🚆 Option 1 — Via Desenzano (quickest to Sirmione):</strong><br>
+        &nbsp;&nbsp;Milano Centrale → <span class="arr">Desenzano del Garda/Rivoltella</span> ~<strong>40–50 min</strong> (Frecciarossa or Regionale)<br>
+        &nbsp;&nbsp;Then 🚌 Bus (line 483 ATV) Desenzano station → <span class="arr">Sirmione</span> ~20 min · ~€2.50<br>
+        &nbsp;&nbsp;🎫 Train from ~€8–20 depending on type<br><br>
+        <strong>🚆 Option 2 — Via Verona (combine both cities!):</strong><br>
+        &nbsp;&nbsp;Milano → Verona (1h 10min) → Bus to Sirmione (40 min) or other lake towns<br>
+        &nbsp;&nbsp;Visit Verona in the morning, lake in the afternoon — perfect day trip!<br><br>
+        <strong>🚌 Within Lake Garda:</strong> ATV buses connect all lakeside towns — check <a href="https://www.atv.verona.it/en" target="_blank">atv.verona.it</a>
+      </div>
+      <div class="ec-tags">
+        <span class="ec-tag" style="background:#DAFFF0;color:#005520">🏰 Sirmione castle</span>
+        <span class="ec-tag" style="background:#E0EAFF;color:#002060">🌊 Italy's largest lake</span>
+        <span class="ec-tag" style="background:#FFE8EA;color:#9A0A18">🛁 Thermal baths</span>
+        <span class="ec-tag" style="background:#FFF8E8;color:#806000">🍋 Lemon groves</span>
+      </div>
+      <div class="pdesc" style="margin-bottom:10px">
+        <strong>Sirmione must-see:</strong> Castello Scaligero (medieval castle right on the water) · Grotte di Catullo (Roman ruins on the peninsula tip) · Terme di Sirmione (thermal spa) · Walk the full peninsula<br>
+        <strong>Other lake towns:</strong> <strong>Desenzano</strong> (lively, walkable from train station) · <strong>Lazise</strong> (prettiest medieval village) · <strong>Malcesine</strong> in the north (cable car up Monte Baldo with Alpine panorama!)<br>
+        <strong>Must-eat:</strong> freshwater fish (lavarello, carpione) · olive oil from the lake · Lugana white wine · lemon everything<br>
+        <strong>⚠️ Sirmione is very crowded at Easter</strong> — arrive early in the morning!
+      </div>
+      <div class="ec-links">
+        <a href="https://www.trenitalia.com/en.html" target="_blank" class="mbtn mbtn-a" style="display:inline-flex;font-size:0.75rem">🚄 Train to Desenzano →</a>
+        <a href="https://www.atv.verona.it/en" target="_blank" class="mbtn mbtn-it" style="display:inline-flex;font-size:0.75rem">🚌 ATV Buses (lake) →</a>
+        <a href="https://www.google.com/maps/dir//Sirmione+Lago+di+Garda" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.75rem">🗺 Sirmione map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANNING TIP -->
+  <div class="note-card" style="margin-top:8px">
+    <div class="note-head">🗓 Planning Your Easter Trips</div>
+    <p><strong>Book train tickets ASAP!</strong> Frecciarossa and Italo tickets are cheapest 1–3 months in advance. Use <a href="https://www.trenitalia.com/en.html" target="_blank" style="color:var(--it-green)">Trenitalia</a> or <a href="https://www.italotreno.it/en" target="_blank" style="color:var(--it-green)">Italo</a> directly — or compare on <a href="https://www.thetrainline.com" target="_blank" style="color:var(--it-green)">Trainline</a>.</p>
+    <p>🎒 <strong>Suggested order of priority:</strong> Cinque Terre (most booking-sensitive, plan 2 days) → Florence (book museums now) → Verona + Lake Garda (perfect combo in one day!) → Bologna (easiest, can be spontaneous) → Genova (flexible, trains frequent)</p>
+    <p>🇮🇹 <strong>Pasquetta</strong> (Easter Monday) is a national holiday — many places close in the morning but open in the afternoon. Great day for nature walks or the seaside!</p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-stripe"></div>
+  <div class="footer-body">
+    <div class="f1"><strong>App creata dal prof. Crespi</strong> per l'IIS Mendel e Utah State University</div>
+    <div class="f2">✦ &nbsp; 2026 Project UTAH &nbsp; ✦</div>
+  </div>
+  <div class="footer-stripe-us"></div>
+</div>
+
+<script>
+function goTab(name,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
