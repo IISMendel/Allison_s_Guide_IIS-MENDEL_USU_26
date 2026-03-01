@@ -35,11 +35,34 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 /* ── HERO ── */
 .hero{position:relative;overflow:hidden;padding:0;text-align:center;}
 .hero-stripe-top{height:10px;background:linear-gradient(90deg,var(--it-green) 33.3%,var(--it-white) 33.3% 66.6%,var(--it-red) 66.6%);}
-.hero-body{padding:48px 24px 44px;background:linear-gradient(160deg,var(--us-blue) 0%,#003580 45%,#001844 100%);position:relative;overflow:hidden;}
-.hero-body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 110%,rgba(206,43,55,0.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 0%,rgba(0,146,70,0.25) 0%,transparent 50%);pointer-events:none;}
-.hero-body::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.hero-body{padding:48px 24px 44px;background:#001028;position:relative;overflow:hidden;}
+.hero-body::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 110%,rgba(206,43,55,0.45) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 0%,rgba(0,146,70,0.30) 0%,transparent 50%);pointer-events:none;z-index:1;}
+.hero-body::after{content:'';position:absolute;inset:0;background:rgba(0,10,30,0.52);pointer-events:none;z-index:1;}
+.hero-slides{position:absolute;inset:0;z-index:0;}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:bgFade 100s infinite;}
+.hero-slide:nth-child(1){background-image:url('1.jpg');animation-delay:0s;}
+.hero-slide:nth-child(2){background-image:url('2.jpg');animation-delay:5s;}
+.hero-slide:nth-child(3){background-image:url('3.jpg');animation-delay:10s;}
+.hero-slide:nth-child(4){background-image:url('4.jpg');animation-delay:15s;}
+.hero-slide:nth-child(5){background-image:url('5.jpg');animation-delay:20s;}
+.hero-slide:nth-child(6){background-image:url('6.jpg');animation-delay:25s;}
+.hero-slide:nth-child(7){background-image:url('7.jpg');animation-delay:30s;}
+.hero-slide:nth-child(8){background-image:url('8.jpg');animation-delay:35s;}
+.hero-slide:nth-child(9){background-image:url('9.jpg');animation-delay:40s;}
+.hero-slide:nth-child(10){background-image:url('10.jpg');animation-delay:45s;}
+.hero-slide:nth-child(11){background-image:url('11.jpg');animation-delay:50s;}
+.hero-slide:nth-child(12){background-image:url('12.jpg');animation-delay:55s;}
+.hero-slide:nth-child(13){background-image:url('13.jpg');animation-delay:60s;}
+.hero-slide:nth-child(14){background-image:url('14.jpg');animation-delay:65s;}
+.hero-slide:nth-child(15){background-image:url('15.jpg');animation-delay:70s;}
+.hero-slide:nth-child(16){background-image:url('16.jpg');animation-delay:75s;}
+.hero-slide:nth-child(17){background-image:url('17.jpg');animation-delay:80s;}
+.hero-slide:nth-child(18){background-image:url('18.jpg');animation-delay:85s;}
+.hero-slide:nth-child(19){background-image:url('19.jpg');animation-delay:90s;}
+.hero-slide:nth-child(20){background-image:url('20.jpg');animation-delay:95s;}
+@keyframes bgFade{0%,100%{opacity:0;}5%,20%{opacity:1;}25%{opacity:0;}}
 .hero-stripe-bottom{height:10px;background:linear-gradient(90deg,var(--us-red) 33.3%,var(--it-white) 33.3% 66.6%,var(--it-green) 66.6%);}
-.hero-inner{position:relative;z-index:2;}
+.hero-inner{position:relative;z-index:3;}
 .flag-pair{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:22px;animation:fadeDown .6s ease both;}
 .css-flag{display:flex;width:72px;height:46px;border-radius:5px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.45),0 0 0 1.5px rgba(255,255,255,0.25);}
 .it-flag{flex-direction:row;}
@@ -226,6 +249,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 <div class="hero">
   <div class="hero-stripe-top"></div>
   <div class="hero-body">
+    <div class="hero-slides">
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div><div class="hero-slide"></div>
+      <div class="hero-slide"></div><div class="hero-slide"></div>
+    </div>
     <div class="hero-inner">
       <div class="flag-pair">
         <div class="css-flag it-flag" title="Italia">
@@ -288,13 +320,13 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
   <p class="sec-sub">School, Max's home, and your host family — always know where you are</p>
 
   <div class="map-frame">
-    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.68%2C45.51%2C8.98%2C45.66&layer=mapnik" loading="lazy" allowfullscreen></iframe>
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.68%2C45.49%2C8.98%2C45.66&layer=mapnik" loading="lazy" allowfullscreen></iframe>
     <div class="map-label">🗺 Alto Milanese + Malpensa</div>
   </div>
 
   <div class="infobox">
-    📌 <strong>View all 4 locations together:</strong><br>
-    <a href="https://www.google.com/maps/dir/Aeroporto+di+Malpensa/Via+Ferrazzi+15+Villa+Cortese/Via+San+Giovanni+Bosco+5+Canegrate/Via+dell'Asilo+25+Casorezzo" target="_blank">→ Open complete map in Google Maps (Malpensa + all 3 places)</a>
+    📌 <strong>View all locations together:</strong><br>
+    <a href="https://www.google.com/maps/dir/Aeroporto+di+Malpensa/Via+Ferrazzi+15+Villa+Cortese/Via+San+Giovanni+Bosco+5+Canegrate/Via+dell'Asilo+25+Casorezzo/Calimun+Casorezzo" target="_blank">→ Open complete map in Google Maps (Malpensa + tutti i luoghi)</a>
   </div>
 
   <!-- MALPENSA -->
@@ -359,6 +391,27 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
       <a class="mbtn mbtn-m" href="https://moovit.com/?to=Casorezzo+Via+dell'Asilo+25&tll=45.531_8.889" target="_blank">🟢 Moovit</a>
       <a class="mbtn mbtn-w" href="https://waze.com/ul?q=Via+dell'Asilo+25+Casorezzo" target="_blank">🟦 Waze</a>
       <a class="mbtn mbtn-a" href="https://maps.apple.com/?daddr=Via+dell'Asilo+25,+Casorezzo" target="_blank">🍎 Apple Maps</a>
+    </div>
+  </div>
+
+  <!-- CALIMÙN B&B -->
+  <div class="loc-card" style="border-color:#90D8A8">
+    <div class="loc-top">
+      <div class="loc-ico" style="background:linear-gradient(135deg,#E8FFF0,#C8F0D8)">🌿</div>
+      <div>
+        <div class="loc-name">Calimùn — Bed &amp; Breakfast</div>
+        <div class="loc-addr">Casorezzo (MI) · A few km from Milan, surrounded by nature</div>
+      </div>
+    </div>
+    <div style="padding:0 18px 6px">
+      <div class="infobox" style="margin-bottom:10px">
+        🌳 <strong>A hidden gem just outside Milan.</strong> Calimùn is a charming and welcoming B&amp;B nestled in the greenery of the Parco del Ticino natural park, just a few kilometers from the city. A peaceful escape from urban life — imagine waking up surrounded by meadows, birds singing, and the Lombard countryside. Perfect for future American students or visitors who want an authentic, relaxing stay close to Milan, Malpensa airport, and all the sights of the Alto Milanese. <strong>Highly recommended!</strong>
+      </div>
+    </div>
+    <div class="loc-strip">
+      <a class="mbtn mbtn-g" href="https://www.google.com/maps/search/Calimun+Bed+Breakfast+Casorezzo" target="_blank">🗺 Google Maps</a>
+      <a class="mbtn mbtn-it" href="https://www.calimun.it" target="_blank">🌿 calimun.it</a>
+      <a class="mbtn mbtn-a" href="https://maps.apple.com/?q=Calimun+Casorezzo" target="_blank">🍎 Apple Maps</a>
     </div>
   </div>
 
