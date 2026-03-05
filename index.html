@@ -326,14 +326,42 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
   <div class="sec-title">Your Three Key Places</div>
   <p class="sec-sub">School, Max's home, and your host family — always know where you are</p>
 
-  <div class="map-frame">
-    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.68%2C45.49%2C8.98%2C45.66&layer=mapnik" loading="lazy" allowfullscreen></iframe>
-    <div class="map-label">🗺 Alto Milanese + Malpensa</div>
+  <div class="map-frame" style="height:340px;position:relative;">
+    <div id="main-map" style="width:100%;height:100%;border-radius:14px;"></div>
+    <div class="map-label">🗺 Alto Milanese · Malpensa · Linate</div>
+  </div>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script>
+  function initMainMap(){
+    var map = L.map('main-map',{zoomControl:true,scrollWheelZoom:false}).fitBounds([[45.39,8.65],[45.68,9.35]]);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:14}).addTo(map);
+    function mk(color,emoji){
+      return L.divIcon({html:'<div style="background:'+color+';border:2.5px solid #fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.35)">'+emoji+'</div>',className:'',iconSize:[34,34],iconAnchor:[17,17]});
+    }
+    var pts=[
+      [45.4453,9.2768,'✈️','#002868','<b>✈️ Linate Airport</b><br>Your arrival • M4 metro inside'],
+      [45.6297,8.7281,'✈️','#B8860B','<b>✈️ Malpensa Airport</b><br>Traditional arrival • T1 & T2'],
+      [45.5316,8.8894,'🏠','#009246','<b>🏠 Casorezzo</b><br>Antonella – Your Host Family'],
+      [45.5640,8.9597,'🏫','#CE2B37','<b>🏫 Villa Cortese</b><br>IIS Mendel – Your School'],
+      [45.5713,8.9243,'👨‍🏫','#1A6FA8','<b>👨‍🏫 Canegrate</b><br>Max\'s Home'],
+    ];
+    pts.forEach(function(p){
+      L.marker([p[0],p[1]],{icon:mk(p[3],p[2])}).addTo(map).bindPopup(p[4]);
+    });
+    var route=[[45.4453,9.2768],[45.4700,9.2300],[45.5000,9.1500],[45.5200,9.0600],[45.5316,8.8894]];
+    L.polyline(route,{color:'#002868',weight:3,dashArray:'6,6',opacity:0.7}).addTo(map);
+  }
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onload="initMainMap()"></script>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+    <a href="https://www.google.com/maps/dir/45.4453,9.2768/45.5316,8.8894" target="_blank" class="mbtn mbtn-g" style="display:inline-flex;font-size:0.8rem;padding:8px 14px">🚗 Linate → Casorezzo →</a>
+    <a href="https://www.google.com/maps/dir/45.6297,8.7281/45.5316,8.8894" target="_blank" class="mbtn mbtn-it" style="display:inline-flex;font-size:0.8rem;padding:8px 14px">🚗 Malpensa → Casorezzo →</a>
   </div>
 
   <div class="infobox">
     📌 <strong>View all locations together:</strong><br>
-    <a href="https://www.google.com/maps/dir/Aeroporto+di+Malpensa/Via+Ferrazzi+15+Villa+Cortese/Via+San+Giovanni+Bosco+5+Canegrate/Via+dell'Asilo+25+Casorezzo/Calimun+Casorezzo" target="_blank">→ Open complete map in Google Maps (Malpensa + tutti i luoghi)</a>
+    <a href="https://www.google.com/maps/dir/45.4453,9.2768/45.5316,8.8894/45.5640,8.9597/45.5713,8.9243" target="_blank" class="mbtn mbtn-us" style="display:inline-flex;font-size:0.78rem;padding:7px 12px">🗺 Linate → tutti i luoghi →</a>
+    <a href="https://www.google.com/maps/dir/45.6297,8.7281/45.5316,8.8894/45.5640,8.9597/45.5713,8.9243" target="_blank" class="mbtn mbtn-it" style="display:inline-flex;font-size:0.78rem;padding:7px 12px">🗺 Malpensa → tutti i luoghi →</a>
   </div>
 
   <!-- LINATE AIRPORT -->
