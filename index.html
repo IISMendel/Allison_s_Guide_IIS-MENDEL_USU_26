@@ -90,9 +90,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 
 /* ── TABS ── */
 .tabs-wrap{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2.5px solid var(--it-green);box-shadow:0 2px 16px var(--shadow);}
-.tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px;max-width:760px;margin:0 auto;}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 0 0 4px;max-width:760px;margin:0 auto;-webkit-overflow-scrolling:touch;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{display:flex;align-items:center;gap:6px;padding:14px 14px 12px;background:none;border:none;border-bottom:3px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;}
+.tab{display:flex;align-items:center;gap:6px;padding:14px 14px 12px;background:none;border:none;border-bottom:3px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;flex-shrink:0;}
+.tab:last-of-type{margin-right:28px;}
 .tab:hover{color:var(--it-green);}
 .tab.active{color:var(--it-green);border-bottom-color:var(--it-green);}
 
@@ -314,6 +315,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
     <button class="tab" onclick="goTab('emergency',this)">🆘 Emergency</button>
     <button class="tab" onclick="goTab('places',this)">🏛 Explore</button>
     <button class="tab" onclick="goTab('easter',this)">🐣 Easter Trips</button>
+    <button class="tab" onclick="goTab('weather',this)">🌤 Weather</button>
   </div>
 </div>
 
@@ -377,7 +379,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
   <div class="loc-card" style="border-color:#F5D060">
     <div class="loc-top">
       <div class="loc-ico" style="background:linear-gradient(135deg,#FFFBE0,#FFF5A0)">✈️</div>
-      <div><div class="loc-name">Malpensa Airport — <em>by tradition</em> ✈️</div><div class="loc-addr">Via dell'Aeroporto, 21013 Cassinetta di Gallarate (VA) · Terminal 1 &amp; 2</div></div>
+      <div><div class="loc-name">Malpensa Airport — <em>secondo la tradizione</em> ✈️</div><div class="loc-addr">Via dell'Aeroporto, 21013 Cassinetta di Gallarate (VA) · Terminal 1 &amp; 2</div></div>
     </div>
     <div class="loc-strip">
       <a class="mbtn mbtn-g" href="https://www.google.com/maps/dir//Aeroporto+Internazionale+di+Malpensa+T1" target="_blank">🗺 Google Maps</a>
@@ -970,6 +972,103 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
     <p>🎒 <strong>Suggested order of priority:</strong> Cinque Terre (most booking-sensitive, plan 2 days) → Florence (book museums now) → Verona + Lake Garda (perfect combo in one day!) → Bologna (easiest, can be spontaneous) → Genova (flexible, trains frequent)</p>
     <p>🇮🇹 <strong>Pasquetta</strong> (Easter Monday) is a national holiday — many places close in the morning but open in the afternoon. Great day for nature walks or the seaside!</p>
   </div>
+</div>
+
+<!-- ══ WEATHER ══ -->
+<div id="tab-weather" class="section">
+  <div class="sec-title">Weather 🌤</div>
+  <p class="sec-sub">Live conditions in Casorezzo / Villa Cortese — updated every time you open the app</p>
+
+  <div style="background:#fff;border-radius:16px;border:2px solid var(--divider);box-shadow:0 2px 14px var(--shadow-md);margin-bottom:18px;overflow:hidden;">
+    <div style="background:linear-gradient(135deg,var(--us-blue),#003CB0);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="color:#fff;">
+        <div style="font-size:0.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:2px">📍 Casorezzo / Villa Cortese</div>
+        <div style="font-size:0.8rem;font-weight:600;opacity:.85" id="wx-date">Loading…</div>
+      </div>
+      <span id="wx-icon" style="font-size:2.8rem;line-height:1">⛅</span>
+    </div>
+    <div style="padding:16px 18px 8px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div id="wx-temp-c" style="font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:var(--dark);line-height:1;">--°C</div>
+        <div id="wx-temp-f" style="font-size:1.1rem;color:var(--mid);font-weight:600;margin-top:3px;">--°F</div>
+      </div>
+      <div style="flex:1;min-width:130px;">
+        <div id="wx-desc" style="font-size:0.95rem;font-weight:600;color:var(--dark);margin-bottom:4px;">--</div>
+        <div id="wx-feels" style="font-size:0.78rem;color:var(--mid);">Feels like --</div>
+        <div id="wx-humidity" style="font-size:0.78rem;color:var(--mid);">Humidity --</div>
+      </div>
+    </div>
+    <div id="wx-forecast" style="display:flex;gap:8px;padding:10px 18px 14px;overflow-x:auto;scrollbar-width:none;"></div>
+    <div style="margin:0 14px 14px;border-radius:12px;padding:14px 16px;background:linear-gradient(135deg,#F0FFF5,#E5FFF0);border:1.5px solid #A8DDB8;">
+      <div style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--it-green);margin-bottom:8px;">👗 What to wear today</div>
+      <div id="wx-clothes" style="font-size:0.85rem;color:#2A4A30;line-height:1.6;">Loading clothing advice…</div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">🗓 March → April: What to Expect</div>
+    <p>🌡 <strong>March (early–mid):</strong> cold mornings (~5–8°C / 41–46°F), mild afternoons (~12–15°C / 54–59°F). Frost possible overnight.</p>
+    <p>🌡 <strong>March (late):</strong> warmer, ~10–16°C / 50–61°F. Still variable — a warm sunny day can flip to cold and rainy overnight.</p>
+    <p>🌡 <strong>April:</strong> pleasant, ~13–20°C / 55–68°F. Spring in full bloom! Showers are common.</p>
+    <p>🧥 <strong>Always bring a layer</strong> — Lombardy mornings are deceptive. It may be cold at 7am but warm by 2pm.</p>
+    <p>☔ <strong>Carry a compact umbrella</strong> every day — rain comes without warning.</p>
+    <p>🌬 <strong>Wind from the Alps</strong> can make it feel colder than it is, especially in open fields near Casorezzo.</p>
+  </div>
+
+  <script>
+  (function(){
+    function toF(c){return Math.round(c*9/5+32);}
+    function wxIcon(code){
+      if(code<=113)return'☀️';if(code<=116)return'⛅';if(code<=119)return'☁️';
+      if(code<=143)return'🌫';if(code<=176)return'🌦';if(code<=200)return'🌩';
+      if(code<=260)return'🌨';if(code<=284)return'🧊';if(code<=350)return'🌧';
+      if(code<=395)return'❄️';return'🌈';
+    }
+    function clothingAdvice(tempC,desc){
+      var d=desc.toLowerCase(),rain=d.includes('rain')||d.includes('shower')||d.includes('drizzle'),snow=d.includes('snow')||d.includes('ice'),base='';
+      if(tempC<=4)base='🧥 Heavy winter coat, scarf, gloves and hat — it\'s freezing! Thermal layers underneath.';
+      else if(tempC<=9)base='🧥 Winter coat essential. Scarf and gloves a good idea. Dress in layers.';
+      else if(tempC<=13)base='🧣 Medium jacket or wool coat. A scarf is useful in the morning and evening.';
+      else if(tempC<=17)base='🧤 Light jacket or trench coat. A light sweater underneath. Comfortable for walking.';
+      else if(tempC<=21)base='👕 Light layers — a long-sleeve top or hoodie. A jacket for the evening.';
+      else base='👗 T-shirt weather! Light clothing, but keep a light layer handy for evening.';
+      if(rain)base+=' ☔ <strong>Rain expected — bring your umbrella!</strong>';
+      if(snow)base+=' ❄️ <strong>Snow or ice possible — waterproof boots advised.</strong>';
+      return base;
+    }
+    var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    fetch('https://wttr.in/Casorezzo,Italy?format=j1')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var c=d.current_condition[0],tempC=parseFloat(c.temp_C),feelsC=parseFloat(c.FeelsLikeC),desc=c.weatherDesc[0].value,code=parseInt(c.weatherCode),now=new Date();
+        document.getElementById('wx-date').textContent=days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+        document.getElementById('wx-icon').textContent=wxIcon(code);
+        document.getElementById('wx-temp-c').textContent=tempC+'°C';
+        document.getElementById('wx-temp-f').textContent=toF(tempC)+'°F';
+        document.getElementById('wx-desc').textContent=desc;
+        document.getElementById('wx-feels').textContent='Feels like '+feelsC+'°C / '+toF(feelsC)+'°F';
+        document.getElementById('wx-humidity').textContent='Humidity '+c.humidity+'%';
+        document.getElementById('wx-clothes').innerHTML=clothingAdvice(tempC,desc);
+        var fc=document.getElementById('wx-forecast');fc.innerHTML='';
+        d.weather.slice(0,5).forEach(function(day){
+          var dt=new Date(day.date),hi=parseInt(day.maxtempC),lo=parseInt(day.mintempC),ic=wxIcon(parseInt(day.hourly[4].weatherCode));
+          fc.innerHTML+='<div style="flex:0 0 auto;text-align:center;background:#F4F8F4;border-radius:10px;padding:8px 11px;min-width:58px;">'
+            +'<div style="font-size:0.66rem;font-weight:700;color:var(--mid)">'+days[dt.getDay()].slice(0,3)+'</div>'
+            +'<div style="font-size:1.5rem;margin:4px 0">'+ic+'</div>'
+            +'<div style="font-size:0.75rem;font-weight:700;color:var(--dark)">'+hi+'°C</div>'
+            +'<div style="font-size:0.66rem;color:var(--mid)">'+lo+'°C</div>'
+            +'<div style="font-size:0.62rem;color:var(--us-blue);font-weight:600;margin-top:2px">'+toF(hi)+'°F</div>'
+            +'</div>';
+        });
+      })
+      .catch(function(){
+        document.getElementById('wx-temp-c').textContent='N/A';
+        document.getElementById('wx-desc').textContent='Weather unavailable — check your internet connection';
+        document.getElementById('wx-clothes').textContent='For March–April in Lombardy: bring a medium jacket, layers, and an umbrella every day!';
+      });
+  })();
+  </script>
 </div>
 
 </div><!-- /page -->
